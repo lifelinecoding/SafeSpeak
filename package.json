@@ -9,10 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-email/components": "^1.0.12",
+    "bcryptjs": "^3.0.3",
     "mongoose": "^9.7.4",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "resend": "^6.17.2",
     "zod": "^4.4.3"
   },
   "devDependencies": {

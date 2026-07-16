@@ -99,7 +99,9 @@ const Page = () => {
       }
 
       // Redirect to verification page
-      router.replace(`/verify${username}`);
+      // console.log(username);
+      // console.log(debouncedUsername);
+      router.replace(`/verify/${username}`);
     } catch (error: AxiosError<ApiResponse> | unknown) {
       if (error instanceof AxiosError) {
         console.error(
@@ -135,7 +137,7 @@ const Page = () => {
             Sign up to start your anonymous adventure
           </p>
         </div>
-        <form id="space-y-6" onSubmit={register.handleSubmit(onSubmit)}>
+        <form className="space-y-6" onSubmit={register.handleSubmit(onSubmit)}>
           <FieldGroup>
             <Controller
               name="username"

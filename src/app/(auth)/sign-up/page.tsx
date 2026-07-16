@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 
 type SignUpValues = z.infer<typeof signUpSchema>;
 
-const Page = () => {
+const SignUp = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [username, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
@@ -263,4 +263,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default SignUp;

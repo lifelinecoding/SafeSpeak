@@ -26,6 +26,8 @@ import { Button } from "./ui/button";
 import { Trash } from "lucide-react";
 import { Message } from "@/model/User";
 import { toast } from "sonner";
+import { ApiResponse } from "@/types/ApiResponse";
+import axios, { AxiosError } from "axios";
 
 type MessageCardProps = {
   message: Message;
@@ -36,7 +38,23 @@ type MessageCardProps = {
 const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
 
   //TODO: This method is pending to create after creating the route at the backend to delete.
-  function handleDeleteConfirm() {}
+  async function handleDeleteConfirm() {
+     try {
+      const response = await axios.delete<ApiResponse>(
+        `/api/delete-message/${message._id}`
+      );
+      toast.success(response.data.message || "Message deleted successfully!",{
+        position : "bottom-right",
+      });
+      onMessageDelete(message._id.toString());
+
+    } catch (error) {
+      const axiosError = error as AxiosError<ApiResponse>;
+      toast.error(axiosError.response?.data.message ?? 'Failed to delete message',{
+        position : "bottom-right"
+      })
+    } 
+  }
 
   return (
     <Card>

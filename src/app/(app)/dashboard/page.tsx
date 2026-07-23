@@ -140,9 +140,9 @@ const Dashboard = () => {
         );
         return;
       }
-    }
-
+      
     toast.error("Failed to toggle the message acceptance status!");
+    }
   };
 
   if (!session || !session?.user) return <>Please login</>;

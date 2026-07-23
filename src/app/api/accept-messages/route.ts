@@ -24,6 +24,7 @@ export async function POST(request: Request) {
 
   const userId = user?._id;
   const { acceptMessages } = await request.json();
+  console.log(acceptMessages);
 
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
@@ -34,7 +35,7 @@ export async function POST(request: Request) {
         },
       },
       {
-        new: true,
+        returnDocument: 'after',
       },
     );
 
@@ -79,6 +80,8 @@ export async function GET() {
   const session = await getServerSession(authOptions);
   const user: User = session?.user as User;
 
+  // console.log(user);       //TODO: Test console to be removed.
+
   if (!session || !session.user) {
     return Response.json(
       {
@@ -94,8 +97,10 @@ export async function GET() {
   const userId = user?._id;
 
   try {
-    const foundUser = await UserModel.findById(userId);
-
+    const foundUser = await UserModel.findById(userId).select(
+      "-password -verifyCode -verifyCodeExpiry -__v",
+    );
+    // console.log(foundUser);
     if (!foundUser) {
       return Response.json(
         {

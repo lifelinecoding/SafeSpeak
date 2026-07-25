@@ -37,7 +37,6 @@ type MessageCardProps = {
 // eslint-disable-next-line
 const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
 
-  //TODO: This method is pending to create after creating the route at the backend to delete.
   async function handleDeleteConfirm() {
      try {
       const response = await axios.delete<ApiResponse>(
@@ -57,18 +56,16 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   }
 
   return (
-    <Card>
+    <Card className="flex w-xs">
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
+        <CardTitle className="font-bold text-lg">Feedback</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p>{message.content}</p>
       </CardContent>
 
       <AlertDialog>
-        <AlertDialogTrigger render={<Button variant="outline" />}>
+        <AlertDialogTrigger render={<Button className="w-20 ml-3 bg-black text-white cursor-pointer" variant="outline" />}>
           <Trash className="w-5 h-5" />
         </AlertDialogTrigger>
         <AlertDialogContent>

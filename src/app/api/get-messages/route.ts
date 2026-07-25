@@ -47,7 +47,7 @@ export async function GET() {
       },
     ]);
 
-    console.log(foundUserMessage);
+    // console.log(foundUserMessage);
 
     if (!foundUserMessage || foundUserMessage?.length === 0) {
       return Response.json(
@@ -64,10 +64,10 @@ export async function GET() {
     return Response.json(
       {
         success: true,
-        message: foundUserMessage[0].messages,
+        messages: foundUserMessage[0].messages,
       },
       {
-        status: 404,
+        status: 200,
       },
     );
   } catch (error) {

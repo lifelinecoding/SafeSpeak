@@ -77,6 +77,8 @@ const Dashboard = () => {
       try {
         const response: AxiosResponse<ApiResponse> =
           await axios.get("/api/get-messages");
+
+          console.log(response);
         setMessages(response.data.messages || []);
 
         if (refresh) {
@@ -201,7 +203,7 @@ const Dashboard = () => {
           <RefreshCcw className="h-4 w-4" />
         )}
       </Button>
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
         {messages.length > 0 ? (
           messages.map((message) => (
             <MessageCard

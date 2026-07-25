@@ -4,12 +4,13 @@ import { dbConnect } from "@/lib/dbConnect";
 import { User } from "next-auth";
 // import { Message } from "@/model/User";
 import { authOptions } from "../../auth/[...nextauth]/options";
+import mongoose from "mongoose";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { messageId: string } },
+  { params }: { params: Promise<{ messageId: string }> },
 ) {
-  const messageId = params.messageId;
+  const {messageId} = await params;
   await dbConnect();
   const session = await getServerSession(authOptions);
   const _user: User = session?.user as User;
@@ -20,10 +21,12 @@ export async function DELETE(
     );
   }
 
+  console.log(params);
+
   try {
     const updateResult = await UserModel.updateOne(
       { _id: _user._id },
-      { $pull: { messages: { _id: messageId } } },
+      { $pull: { messages: { _id: new mongoose.Types.ObjectId(messageId) } } },
     );
 
     if (updateResult.modifiedCount === 0) {

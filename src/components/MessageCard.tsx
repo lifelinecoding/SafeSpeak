@@ -2,9 +2,7 @@
 
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -34,7 +32,7 @@ type MessageCardProps = {
   onMessageDelete: (messageId: string) => void;
 };
 
-// eslint-disable-next-line
+//eslint-disable-next-line
 const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
 
   async function handleDeleteConfirm() {
@@ -65,7 +63,7 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
       </CardContent>
 
       <AlertDialog>
-        <AlertDialogTrigger render={<Button className="w-20 ml-3 bg-black text-white cursor-pointer" variant="outline" />}>
+        <AlertDialogTrigger render={<Button className="w-20 ml-3 bg-black hover:bg-slate-600 hover:text-white text-white cursor-pointer" variant="outline" />}>
           <Trash className="w-5 h-5" />
         </AlertDialogTrigger>
         <AlertDialogContent>
